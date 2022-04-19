@@ -1,0 +1,27 @@
+@startuml
+class Atuendo{
+prendas
+criterio
+}
+
+class Prenda{
+material
+colorP
+colorS
+tipoDePrenda()
+categoria()
+}
+
+enum Categoria{
+}
+
+class Tipo{
+}
+
+
+Atuendo -->"(2,4)" Prenda 
+Tipo --> Prenda
+Categoria --> Tipo
+
+ 
+@enduml
