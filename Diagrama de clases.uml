@@ -12,8 +12,45 @@ tipoDePrenda()
 categoria()
 }
 
+class Material{
+tipoDeMaterial
+trama
+}
+
+class Borrador{
+tipoDePrenda
+material
+colorP
+colorS
+trama
+especificarTipo()
+especificarMaterial()
+especificarColorP()
+especificarColosS()
+especificarTrama()
+crearPrenda()
+}
+
+interface Costurero{
+fabricanteParteSuperior()
+fabricanteParteInferior()
+fabricanteCalzado()
+}
+
+class CostureroSanJuan{}
+class CostureroJohnston{}
+class Uniforme{
+prendaSuperior
+prendaInferior
+calzado
+fabricar(costurero)
+}
+
 enum Categoria{
 }
+
+enum TipoDeMaterial{}
+enum Trama{}
 
 class Tipo{
 }
@@ -22,6 +59,14 @@ class Tipo{
 Atuendo -->"(2,4)" Prenda 
 Tipo --> Prenda
 Categoria --> Tipo
-
+Prenda --> Material
+Material --> TipoDeMaterial
+Material --> Trama
+Borrador --> Prenda
+Uniforme ..> Costurero
+CostureroSanJuan ..|> Costurero
+CostureroJohnston..|> Costurero
+Costurero ..> Borrador
+Uniforme -->"*" Prenda
  
 @enduml
