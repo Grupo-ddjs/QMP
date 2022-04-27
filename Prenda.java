@@ -5,11 +5,11 @@ import java.util.ArrayList; // import just the ArrayList class
 
 public class Prenda {
     Tipo tipo;
-    String material;
+    Material material;
     String colorP;
     String colorS;
 
-    public Prenda(Tipo tipo,String material,String colorP,String colorS) throws Exception {
+    public Prenda(Tipo tipo,Material material,String colorP,String colorS) throws Exception {
         this.tipo = tipo;
         this.material = material;
         this.colorP = colorP;
