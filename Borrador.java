@@ -1,4 +1,4 @@
-class Borrador
+class Borrador{
     // ... demás atributos y métodos
 
     public void especificarTipo(TipoPrenda){
