@@ -1,0 +1,6 @@
+class Material{
+TipoDeMaterial material;
+Trama trama;
+String colorp;
+String colors;
+}

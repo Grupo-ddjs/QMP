@@ -22,12 +22,6 @@ tipoDePrenda
 material
 colorP
 colorS
-trama
-especificarTipo()
-especificarMaterial()
-especificarColorP()
-especificarColosS()
-especificarTrama()
 crearPrenda()
 }
 

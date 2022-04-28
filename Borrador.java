@@ -1,9 +1,6 @@
 class Borrador{
-    // ... demás atributos y métodos
-
-    public void especificarTipo(TipoPrenda){
-	this.prenda = tipoPrenda;
-    }
+    // Setters de todos los atributos
+	
     public Prenda crearPrenda(){
 	 return new Prenda(this.tipo,this.material,...);
     }
