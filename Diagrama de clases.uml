@@ -31,7 +31,7 @@ especificarTrama()
 crearPrenda()
 }
 
-interface Costurero{
+abstract Costurero{
 fabricanteParteSuperior()
 fabricanteParteInferior()
 fabricanteCalzado()
