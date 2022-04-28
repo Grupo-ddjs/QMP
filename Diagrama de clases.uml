@@ -29,6 +29,7 @@ abstract Costurero{
 fabricanteParteSuperior()
 fabricanteParteInferior()
 fabricanteCalzado()
+fabricar()
 }
 
 class CostureroSanJuan{}
@@ -37,7 +38,6 @@ class Uniforme{
 prendaSuperior
 prendaInferior
 calzado
-fabricar(costurero)
 }
 
 enum Categoria{
@@ -57,10 +57,9 @@ Prenda --> Material
 Material --> TipoDeMaterial
 Material --> Trama
 Borrador --> Prenda
-Uniforme ..> Costurero
+Costurero ..> Uniforme 
 CostureroSanJuan ..|> Costurero
 CostureroJohnston..|> Costurero
 Costurero ..> Borrador
 Uniforme -->"*" Prenda
- 
 @enduml
