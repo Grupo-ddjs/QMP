@@ -25,7 +25,7 @@ colorS
 crearPrenda()
 }
 
-abstract Costurero{
+interface Costurero{
 fabricanteParteSuperior()
 fabricanteParteInferior()
 fabricanteCalzado()
@@ -56,10 +56,11 @@ Categoria --> Tipo
 Prenda --> Material
 Material --> TipoDeMaterial
 Material --> Trama
-Borrador --> Prenda
+Borrador ..> Prenda
+Borrador --> Material
 Costurero ..> Uniforme 
 CostureroSanJuan ..|> Costurero
 CostureroJohnston..|> Costurero
-Costurero ..> Borrador
+Costurero ..> Prenda
 Uniforme -->"*" Prenda
 @enduml
