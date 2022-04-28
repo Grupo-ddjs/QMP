@@ -4,7 +4,7 @@ class Uniforme {
     Prenda calzado;
 
      public Uniforme fabricar(Costurero costurero)
-       new Uniforme(
+       return Uniforme(
           costurero.fabricarParteSuperior(),
           costurero.fabricarParteInferior(),
           costurero.fabricarCalzado()
