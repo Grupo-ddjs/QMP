@@ -11,7 +11,7 @@ class Uniforme {
 	)
 }
 
-abstract class Costurero {
+interface Costurero {
     public Prenda fabricarParteSuperior()
     public Prenda fabricarParteInferior()
     public Prenda fabricarCalzado()
