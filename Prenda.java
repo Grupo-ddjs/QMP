@@ -8,6 +8,8 @@ public class Prenda {
     Material material;
     String colorP;
     String colorS;
+	int vecesUsada = 0;
+	boolean enLavado;
 
     public Prenda(Tipo tipo,Material material,String colorP,String colorS) throws Exception {
         this.tipo = tipo;
@@ -27,5 +29,31 @@ public class Prenda {
     public Categoria categoria(){ // Para saber la categoria de la prenda
         return this.tipo.categoria();
     }
+	
+	public void usar() {
+		vecesUsada++;
+	}
+	
+	public boolean estaSucia() {
+		return vecesUsada > 1;
+	}
+	
+	public boolean estaPercudida() {
+		return vecesUsada > 4;
+	}
+	
+	public void lavar() {
+		if (!estaPercudida()) {
+			vecesUsada = 0;
+			this.enLavado = true;
+		}
+	}
+	
+	public void sacarDeLavarropa() {
+		this.enLavado = false; // Aun no sabemos como se termina de lavar porque la consigna no lo dice.
+	}
+	
+	
 
 }
+
