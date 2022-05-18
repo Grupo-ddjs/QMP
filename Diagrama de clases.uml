@@ -8,8 +8,15 @@ class Prenda{
 material
 colorP
 colorS
+vecesUsada
+enLavado
 tipoDePrenda()
 categoria()
+usar()
+estaSucia()
+estaPercudida()
+lavar()
+sacarDelLavarropa()
 }
 
 class Material{
@@ -45,6 +52,19 @@ enum Categoria{
 
 enum TipoDeMaterial{}
 enum Trama{}
+enum CriterioDeTemperatura{}
+
+interface BuilderConSugerencia {
+generarSugerencia
+crearAtuendo
+}
+
+class Guardarropa {
+sugerirAtuendo
+}
+
+class Sugerencia {
+}
 
 class Tipo{
 }
@@ -63,4 +83,10 @@ CostureroSanJuan ..|> Costurero
 CostureroJohnston..|> Costurero
 Costurero ..> Prenda
 Uniforme -->"*" Prenda
+BuilderConSugerencia ..> Sugerencia
+Sugerencia --> Prenda
+Sugerencia --> CriterioDeTemperatura
+Guardarropa -->"*" Atuendo
+Guardarropa ..|> BuilderConSugerencia 
+
 @enduml
