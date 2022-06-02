@@ -9,6 +9,7 @@ public class Prenda {
     String colorP;
     String colorS;
 	int vecesUsada = 0;
+	int temperaturaMaxima;
 	boolean enLavado;
 
     public Prenda(Tipo tipo,Material material,String colorP,String colorS) throws Exception {
@@ -53,7 +54,13 @@ public class Prenda {
 		this.enLavado = false; // Aun no sabemos como se termina de lavar porque la consigna no lo dice.
 	}
 	
+	public boolean esDeCategoria(Categoria unaCategoria) {
+		return unaCategoria == tipo.getCategoria();
+	}
 	
+	public boolean aptaParaTemperatura(int unaTemperatura) {
+		return this.temperaturaMaxima >= unaTemperatura;
+	}
 
 }
 

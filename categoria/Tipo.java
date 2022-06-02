@@ -13,11 +13,16 @@ enum Categoria{
                   instancias VALIDAS de tipos de prenda para asignarselas a estas ultimas*/
 
 public class Tipo{
-  public Categoria categoria; // Guarda la categoria a la que pertenece el tipo
+	public Categoria categoria; // Guarda la categoria a la que pertenece el tipo
 
-   public Tipo(Categoria categoria){
+	public Tipo(Categoria categoria){
       this.categoria = categoria;
-}
+	}
+	
+	public Categoria getCategoria() {
+		return this.categoria;
+	}
+	
 }
 
 /* Alternativa 2: Al resolverlo de esta manera habría que crear una validación en prenda que defina si es o no un tipo valido en conjunto con su Categoria, siendo cohesiva
