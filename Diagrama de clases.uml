@@ -1,8 +1,10 @@
 @startuml
 class Atuendo{
-prendas
-criterio
+prendas:Prenda
++agregarPrenda()
 }
+
+Atuendo --> "*" Prenda
 
 class Prenda{
 material
@@ -10,6 +12,7 @@ colorP
 colorS
 vecesUsada
 enLavado
+temperaturaMaxima
 tipoDePrenda()
 categoria()
 usar()
@@ -17,6 +20,7 @@ estaSucia()
 estaPercudida()
 lavar()
 sacarDelLavarropa()
+aptaParaTemperatura(int temperatura)
 }
 
 class Material{
@@ -52,25 +56,34 @@ enum Categoria{
 
 enum TipoDeMaterial{}
 enum Trama{}
-enum CriterioDeTemperatura{}
-
-interface BuilderConSugerencia {
-generarSugerencia
-crearAtuendo
-}
 
 class Guardarropa {
-sugerirAtuendo
-}
-
-class Sugerencia {
+-prendas:Prenda
++generarSugerencia(Categoria unaCategoria, int unaTemperatura):Atuendo
++prendasDisponibles(int unaTemperatura):Prenda[]
++prendaRandomDe():Prenda
 }
 
 class Tipo{
 }
 
 
-Atuendo -->"(2,4)" Prenda 
+class ServicioMeteorologicoAccuWeather implements ServicioMeteorologico{
+-api:AccuWeatherAPI
+-direccion:String
+-proximaExpiracion:LocalDateTime
+-ultimaRespuesta:int
+
++consultarTemperatura():int
++consultarApi(String direccion):int
++expiro():boolean
+}
+
+interface ServicioMeteorologico {
++consultarTemperatura(String direccion):int 
+}
+
+ 
 Tipo --> Prenda
 Categoria --> Tipo
 Prenda --> Material
@@ -83,10 +96,6 @@ CostureroSanJuan ..|> Costurero
 CostureroJohnston..|> Costurero
 Costurero ..> Prenda
 Uniforme -->"*" Prenda
-BuilderConSugerencia ..> Sugerencia
-Sugerencia --> Prenda
-Sugerencia --> CriterioDeTemperatura
-Guardarropa -->"*" Atuendo
-Guardarropa ..|> BuilderConSugerencia 
+Guardarropa ..> Atuendo
 
 @enduml
