@@ -1,6 +1,7 @@
 class Atuendo {
 	
 	ListaDePrendas prendas;
+
 	
 	Atuendo(Prenda prenda1, Prenda prenda2, Prenda prenda3, Prenda prenda4) {
 		this.agregarPrenda(prenda1);

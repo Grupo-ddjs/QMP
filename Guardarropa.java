@@ -1,6 +1,8 @@
 class Guardarropa {
 
+	Criterio criterio; // Entre casa, para salir, etc
 	ListaDePrendas prendas;
+	ListaDePropuestas propuestas;
 	
 	ListaDePrendas getPrendas() {
 		return this.prendas;
@@ -17,6 +19,29 @@ class Guardarropa {
   
 	Atuendo generarSugerencia() { // Punto 2 de entrega 4
 		return new Atuendo(prendaRandomDe(PARTE_SUPERIOR), prendaRandomDe(PARTE_INFERIOR), prendaRandomDe(CALZADO), prendaRandomDe(ACCESORIOS));
+	}
+	
+	void agregarPrenda(Prenda prenda) {
+		prendas.add(prenda)
+	}
+	
+	void quitarPrenda(Prenda prenda) {
+		prendas.quitar(prenda)
+	}
+	
+	void aceptarPropuesta(Propuesta unaPropuesta) {
+		unaPropuesta.aceptar(this);
+		unaPropuesta.estado = Estado.ACEPTADA;
+	}
+	
+	void deshacerPropuesta(Propuesta unaPropuesta) {
+		if (unaPropuesta.estado == Estado.ACEPTADA) {
+			unaPropuesta.aceptar(this);
+		}
+	}
+	
+	void recibirPropuesta(Propuesta unaPropuesta) {
+		propuestas.add(unaPropuesta);
 	}
 
 }
