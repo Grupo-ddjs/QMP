@@ -1,5 +1,6 @@
 
 public abstract Propuesta {
+	Prenda unaPrenda;
 	Estado estado;
 	abstract void confirmar(Guardarropa unGuardarropa);
 	abstract void deshacer(Guardarropa unGuardarropa);
@@ -7,7 +8,6 @@ public abstract Propuesta {
 }
 
 class Agregar extends Propuesta {
-	Prenda unaPrenda;
 	
 	void confirmar(Guardarropa unGuardarropa) {
 		unGuardarropa.agregarPrenda(unaPrenda);
@@ -20,7 +20,6 @@ class Agregar extends Propuesta {
 }
 
 class Quitar extends Propuesta {
-	Prenda unaPrenda;
 	
 	void confirmar(Guardarropa unGuardarropa) {
 		unGuardarropa.quitarPrenda(unaPrenda);

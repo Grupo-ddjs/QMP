@@ -58,10 +58,34 @@ enum TipoDeMaterial{}
 enum Trama{}
 
 class Guardarropa {
--prendas:Prenda
+-criterio:Criterio
 +generarSugerencia(Categoria unaCategoria, int unaTemperatura):Atuendo
 +prendasDisponibles(int unaTemperatura):Prenda[]
 +prendaRandomDe():Prenda
++agregarPrenda(Prenda prenda):void
++quitarPrenda(Prenda prenda):void
++aceptarPropuesta(Propuesta propuesta):void
++deshacerPropuesta(Propuesta propuesta):void
++recibirPropuesta(Propuesta propuesta):void
+}
+
+abstract Propuesta {
++confirmar(Guardarropa unGuardarropa):void
++deshacer(Guardarropa unGuardarropa):void
+}
+
+class Quitar {
+
+}
+
+class Agregar {
+
+}
+
+enum Estado {
+ACEPTADO
+PENDIENTE
+RECHAZADO
 }
 
 class Tipo{
@@ -97,5 +121,12 @@ CostureroJohnston..|> Costurero
 Costurero ..> Prenda
 Uniforme -->"*" Prenda
 Guardarropa ..> Atuendo
+Guardarropa -->"*" Prenda
+Guardarropa -->"*" Propuesta
+Propuesta --> Estado
+Propuesta --> Prenda
+Usuario -->"*" Guardarropa
+Agregar --|> Propuesta
+Quitar--|> Propuesta
 
 @enduml
