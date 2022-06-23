@@ -27,7 +27,7 @@ class RepositorioDeAlertas {
 }
 
 interface ServicioMeteorologico {
-+obtenerAlertas(String ciudad):Alerta
++obtenerAlertas(String ciudad):List<String>
 }
 
 ServicioMeteorologico .right.> RepositorioDeAlertas:"<<Usa>>"
@@ -35,7 +35,7 @@ ServicioMeteorologico ..> NotificadorDeClima
 
 class AccuWeatherService implements ServicioMeteorologico {
 -apiClimatico:AccuWeatherAPI
-+obtenerAlertas(String ciudad):Alerta
++obtenerAlertas(String ciudad):List<String>
 }
 
 AccuWeatherService --> AccuWeatherAPI
