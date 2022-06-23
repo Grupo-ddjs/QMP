@@ -1,132 +1,88 @@
 @startuml
-class Atuendo{
-prendas:Prenda
-+agregarPrenda()
+class Usuario {
+-email:String
+-sugerencias:List<Atuendo>
++recibirSugerencia(Atuendo atuendo):void
++notificar(String):void
++enviarMail(String):void
 }
 
-Atuendo --> "*" Prenda
+Usuario --> NotificationService 
+Usuario --> MailSenderService 
 
-class Prenda{
-material
-colorP
-colorS
-vecesUsada
-enLavado
-temperaturaMaxima
-tipoDePrenda()
-categoria()
-usar()
-estaSucia()
-estaPercudida()
-lavar()
-sacarDelLavarropa()
-aptaParaTemperatura(int temperatura)
+class RepositorioDeUsuarios {
+-usuarios:List<Usuarios>
++generarSugerenciaDiaria():void
 }
 
-class Material{
-tipoDeMaterial
-trama
-}
+RepositorioDeUsuarios --> "*" Usuario
 
-class Borrador{
-tipoDePrenda
-material
-colorP
-colorS
-crearPrenda()
-}
+note "Comprendemos  disparar el cálculo de sugerencias\n diarias como la cantidad de sugerencias\n que se van a enviar a todos los usuarios" as notaDeRepo
+RepositorioDeUsuarios .left. notaDeRepo
 
-interface Costurero{
-fabricanteParteSuperior()
-fabricanteParteInferior()
-fabricanteCalzado()
-fabricar()
-}
-
-class CostureroSanJuan{}
-class CostureroJohnston{}
-class Uniforme{
-prendaSuperior
-prendaInferior
-calzado
-}
-
-enum Categoria{
-}
-
-enum TipoDeMaterial{}
-enum Trama{}
-
-class Guardarropa {
--criterio:Criterio
-+generarSugerencia(Categoria unaCategoria, int unaTemperatura):Atuendo
-+prendasDisponibles(int unaTemperatura):Prenda[]
-+prendaRandomDe():Prenda
-+agregarPrenda(Prenda prenda):void
-+quitarPrenda(Prenda prenda):void
-+aceptarPropuesta(Propuesta propuesta):void
-+deshacerPropuesta(Propuesta propuesta):void
-+recibirPropuesta(Propuesta propuesta):void
-}
-
-abstract Propuesta {
-+confirmar(Guardarropa unGuardarropa):void
-+deshacer(Guardarropa unGuardarropa):void
-}
-
-class Quitar {
-
-}
-
-class Agregar {
-
-}
-
-enum Estado {
-ACEPTADO
-PENDIENTE
-RECHAZADO
-}
-
-class Tipo{
-}
-
-
-class ServicioMeteorologicoAccuWeather implements ServicioMeteorologico{
--api:AccuWeatherAPI
--direccion:String
--proximaExpiracion:LocalDateTime
--ultimaRespuesta:int
-
-+consultarTemperatura():int
-+consultarApi(String direccion):int
-+expiro():boolean
+class RepositorioDeAlertas {
+-alertas:List<String>
++getAlertas():List<String>
++setAlertas(String):void
 }
 
 interface ServicioMeteorologico {
-+consultarTemperatura(String direccion):int 
++obtenerAlertas(String ciudad):Alerta
 }
 
- 
-Tipo --> Prenda
-Categoria --> Tipo
-Prenda --> Material
-Material --> TipoDeMaterial
-Material --> Trama
-Borrador ..> Prenda
-Borrador --> Material
-Costurero ..> Uniforme 
-CostureroSanJuan ..|> Costurero
-CostureroJohnston..|> Costurero
-Costurero ..> Prenda
-Uniforme -->"*" Prenda
-Guardarropa ..> Atuendo
-Guardarropa -->"*" Prenda
-Guardarropa -->"*" Propuesta
-Propuesta --> Estado
-Propuesta --> Prenda
-Usuario -->"*" Guardarropa
-Agregar --|> Propuesta
-Quitar--|> Propuesta
+ServicioMeteorologico .right.> RepositorioDeAlertas:"<<Usa>>"
+ServicioMeteorologico ..> NotificadorDeClima
+
+class AccuWeatherService implements ServicioMeteorologico {
+-apiClimatico:AccuWeatherAPI
++obtenerAlertas(String ciudad):Alerta
+}
+
+AccuWeatherService --> AccuWeatherAPI
+
+class AccuWeatherAPI {
++getWeather(String city):List<Map<String,Object>>
++getAlerts(String city):Map<String, List<String>> 
+}
+
+interface NotificadorDeClima {
++actualizar(List<String>):void
++desuscribirse(Usuario):void
++suscribirse(Usuario):void
+}
+
+class ActualizadorDeSugerencias implements NotificadorDeClima {
++actualizar(List<String>):void
++desuscribirse(Ciudad):void
++suscribirse(Ciudad):void
+}
+
+class NotificadorDeTormenta implements NotificadorDeClima {
++actualizar(List<String>):void
++desuscribirse(Usuario):void
++suscribirse(Usuario):void
+}
+
+class NotificadorDeGranizo implements NotificadorDeClima {
++actualizar(List<String>):void
++desuscribirse(Usuario):void
++suscribirse(Usuario):void
+}
+
+class Mailer implements NotificadorDeClima {
++actualizar(List<String>):void
++desuscribirse(Usuario):void
++suscribirse(Usuario):void
+}
+
+NotificadorDeClima --> Usuario
+
+class NotificationService {
++notify(String):void
+}
+
+class MailSenderService {
++send(String,String):void
+}
 
 @enduml
