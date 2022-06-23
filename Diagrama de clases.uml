@@ -8,7 +8,7 @@ class Usuario {
 }
 
 Usuario --> NotificationService 
-Usuario --> MailSenderServer 
+Usuario --> MailSenderService 
 
 class RepositorioDeUsuarios {
 -usuarios:List<Usuarios>
@@ -81,7 +81,7 @@ class NotificationService {
 +notify(String):void
 }
 
-class MailSenderServer {
+class MailSenderService {
 +send(String,String):void
 }
 
