@@ -1,5 +1,6 @@
 public interface ServicioMeteorologico {
    int consultarTemperatura(String direccion);
+   public List<String> obtenerAlertas(String ciudad);
 }
 
 public class ServicioMeteorologicoAccuWeather implements ServicioMeteorologico {
@@ -22,7 +23,8 @@ public class ServicioMeteorologicoAccuWeather implements ServicioMeteorologico {
 		  this.proximaExpiracion = LocalDateTime.now().plus(this.proximaExpiracion); 
 		}
 		return this.ultimaRespuesta;
-	}  
+	}
+	
   
 	private int consultarApi(String direccion) {
 		return this.api.getWeather(direccion).get(0).get("Temperature");
